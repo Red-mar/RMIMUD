@@ -6,5 +6,4 @@ import java.util.ArrayList;
 
 public interface IChat extends Remote {
     String sendMessage(String message) throws RemoteException;
-    ArrayList<String> getMessages() throws RemoteException;
 }

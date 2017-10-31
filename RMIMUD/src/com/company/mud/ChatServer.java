@@ -16,25 +16,14 @@ public class ChatServer extends UnicastRemoteObject implements IChat {
 
     public ChatServer(boolean isServer) throws RemoteException {
         messages = new ArrayList<>();
-        this.isServer = isServer;
-        if (isServer){
-            publisher = new RemotePublisher();
-            publisher.registerProperty("chat");
-            Registry registry = LocateRegistry.createRegistry(4322);
-            registry.rebind("chatPublisher", publisher);
-        }
     }
 
     @Override
     public String sendMessage(String message) throws RemoteException {
         messages.add(message);
-        if (isServer){
-            publisher.inform("chat", null, message);
-        }
         return "message received";
     }
 
-    @Override
     public ArrayList<String> getMessages() throws RemoteException {
         return messages;
     }

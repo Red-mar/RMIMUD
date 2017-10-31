@@ -39,8 +39,4 @@ public class RMIClient {
     public void sendMessage(String message) throws RemoteException {
         chat.sendMessage(message);
     }
-
-    public ArrayList<String> getMessages() throws RemoteException {
-        return chat.getMessages();
-    }
 }

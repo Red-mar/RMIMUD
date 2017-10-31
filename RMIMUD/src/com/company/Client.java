@@ -28,22 +28,10 @@ public class Client {
         }
 
         while (isRunning){
-
             switch (input.next()){
                 case "say":
                     try {
                         client.sendMessage(input.next());
-                    } catch (RemoteException e) {
-                        e.printStackTrace();
-                    }
-                    break;
-                case "get":
-                    try {
-                        System.out.println("--- Chat Log ---");
-                        for (String s : client.getMessages()) {
-                            System.out.println(s);
-                        }
-                        System.out.println("--- E N D ---");
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }

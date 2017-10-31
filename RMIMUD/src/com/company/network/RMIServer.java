@@ -49,4 +49,7 @@ public class RMIServer {
         }
     }
 
+    public ChatServer getChatServer() {
+        return chatServer;
+    }
 }
