@@ -52,7 +52,7 @@ public class Client {
                     }
 
                     try {
-                        client.getClient().sendMessage(session.getName() + ": " + input.nextLine());
+                        client.getClient().sendMessage(session.getCharacter().getName() + ": " + input.nextLine());
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
@@ -76,8 +76,8 @@ public class Client {
 
                     try {
                         System.out.println("--- Session Info ---");
-                        System.out.println("Name:" + session.getName());
-                        System.out.println("---     End      ---");
+                        System.out.println("Name:" + session.getCharacter().getName());
+                        System.out.println("---      End     ---");
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }

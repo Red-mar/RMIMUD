@@ -1,19 +1,21 @@
 package com.company.network;
 
+import com.company.mud.Character;
+
 import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.rmi.server.Unreferenced;
 
 public class SessionImp extends UnicastRemoteObject implements Session, Unreferenced {
-    String name = "Undefined";
+    Character character;
 
     public SessionImp(String name) throws RemoteException {
-        this.name = name;
+        character = new Character(name);
     }
 
-    public String getName() {
-        return name;
+    public Character getCharacter() {
+        return character;
     }
 
     @Override
