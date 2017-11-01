@@ -8,12 +8,12 @@ import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.TimerTask;
 
-public class Game extends TimerTask {
+public class GameServer extends TimerTask {
     private RemotePublisher publisher;
     private RMIServer server;
     private int ticks = 0;
 
-    public Game() throws RemoteException {
+    public GameServer() throws RemoteException {
         server = new RMIServer();
         publisher = new RemotePublisher();
         publisher.registerProperty("chat");
