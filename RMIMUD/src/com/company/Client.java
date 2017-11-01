@@ -35,7 +35,12 @@ public class Client {
         System.out.print("Username:");
         String user = input.next();
         System.out.print("Password:");
-        String password = input.next();
+        String password;
+        if (System.console() != null){ //Does not work in IDE
+            password = System.console().readPassword().toString();
+        } else{
+            password = input.next();
+        }
         session = client.getClient().login(user,password);
         if (session != null){
             System.out.println("Logged in!");
