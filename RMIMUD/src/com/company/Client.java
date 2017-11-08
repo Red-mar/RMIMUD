@@ -25,7 +25,8 @@ public class Client {
         try {
             client = new GameClient(ip, port);
         } catch (RemoteException e) {
-            e.printStackTrace();
+            System.out.println("Could not connect to server: " + e.getMessage());
+            System.exit(0);
         } catch (NotBoundException e) {
             e.printStackTrace();
         }
@@ -81,7 +82,7 @@ public class Client {
 
                     try {
                         System.out.println("--- Session Info ---");
-                        System.out.println("Name:" + session.getCharacter().getName());
+                        System.out.println("Username:" + session.getCharacter().getName());
                         System.out.println("---      End     ---");
                     } catch (RemoteException e) {
                         e.printStackTrace();
