@@ -17,7 +17,8 @@ public class AccountSQLiteContext implements AccountRepository {
             PreparedStatement statement = conn.prepareStatement(command);
             statement.setString(1, username);
             statement.setString(2, password);
-            return statement.execute();
+            statement.execute();
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
         }
