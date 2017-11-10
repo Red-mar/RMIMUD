@@ -1,5 +1,7 @@
 package com.company.network;
 
+import com.company.database.AccountRepository;
+import com.company.mud.Account;
 import com.company.mud.IChat;
 
 import javax.security.auth.login.LoginException;
@@ -53,6 +55,20 @@ public class RMIClient {
         }
 
         return null;
+    }
+
+    public boolean createAccount(String username, String password){
+        try {
+            Login remote = (Login) Naming.lookup("//localhost:4321/login");
+            return remote.createAccount(username, password);
+        } catch (RemoteException e) {
+            e.printStackTrace();
+        } catch (NotBoundException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     public void logout(){

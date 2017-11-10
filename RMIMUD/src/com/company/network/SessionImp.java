@@ -1,6 +1,7 @@
 package com.company.network;
 
 import com.company.mud.Character;
+import com.company.mud.Location;
 
 import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;
@@ -15,7 +16,15 @@ public class SessionImp extends UnicastRemoteObject implements Session, Unrefere
     }
 
     public Character getCharacter() {
+
         return character;
+    }
+
+    @Override
+    public Location[][] loadMap() throws RemoteException {
+        Location[][] map = new Location[10][10];
+
+        return map;
     }
 
     @Override

@@ -9,6 +9,8 @@ import java.rmi.RemoteException;
 public class GameClient {
 
     private RMIClient client;
+    private Session session;
+    private Location[][] map;
 
     public GameClient(String ip, int port) throws RemoteException, NotBoundException {
         client = new RMIClient(ip, port);
@@ -17,5 +19,21 @@ public class GameClient {
 
     public RMIClient getClient() {
         return client;
+    }
+
+    public Session getSession() {
+        return session;
+    }
+
+    public void setSession(Session session) {
+        this.session = session;
+    }
+
+    public void setMap(Location[][] map) {
+        this.map = map;
+    }
+
+    public Location[][] getMap() {
+        return map;
     }
 }

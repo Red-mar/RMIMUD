@@ -13,4 +13,12 @@ public class Character implements Serializable {
     public String getName() {
         return name;
     }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 }

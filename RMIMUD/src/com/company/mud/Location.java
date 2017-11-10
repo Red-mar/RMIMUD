@@ -3,13 +3,25 @@ package com.company.mud;
 import com.sun.javafx.geom.Vec2d;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Location implements Serializable {
-    private String name;
-    private Vec2d location;
+    private String name = "Unkown location";
+    private ArrayList<Character> characters;
 
-    public Location(String name, Vec2d location) {
+    public Location(String name) {
         this.name = name;
-        this.location = location;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public ArrayList<Character> getCharacters() {
+        return characters;
+    }
+
+    public void addCharacter(Character character){
+        characters.add(character);
     }
 }

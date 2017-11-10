@@ -1,20 +1,32 @@
 package com.company.network;
 
+import com.company.database.AccountRepository;
+import com.company.database.AccountSQLiteContext;
+
 import javax.security.auth.login.LoginException;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class LoginImp extends UnicastRemoteObject implements Login {
+    private AccountRepository accountRepo;
+
     protected LoginImp() throws RemoteException {
+        accountRepo = new AccountSQLiteContext();
     }
 
     @Override
     public Session login(String username, String password) throws LoginException, RemoteException {
-        if (true){
-            //Check in database
-        //if (username.equals("Redmar") && password.equals("")){
+        if (accountRepo.login(username, password)){
             return new SessionImp(username);
         }
         return null;
+    }
+
+    @Override
+    public boolean createAccount(String username, String password) throws RemoteException {
+        if (accountRepo.createAccount(username, password)){
+            return true;
+        }
+        return false;
     }
 }

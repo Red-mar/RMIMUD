@@ -15,7 +15,6 @@ public class Client {
         boolean isRunning = true;
         Scanner input = new Scanner(System.in);
         GameClient client = null;
-        Session session = null;
 
         System.out.println("Client using registry");
 
@@ -32,6 +31,20 @@ public class Client {
         }
 
         System.out.println("Hello welcome to game");
+        System.out.println("Do you already have an account? y/n");
+        if (input.next().equals("n")){
+            System.out.println("Creating new account...");
+            System.out.print("Username:");
+            String user = input.next();
+            System.out.print("Password");
+            String password = input.next();
+            if(client.getClient().createAccount(user, password)){
+                System.out.println("Succesfully created a new account!");
+            } else {
+                System.out.println("Error creating new account.");
+                System.exit(0);
+            }
+        }
         System.out.println("Please login");
         System.out.print("Username:");
         String user = input.next();
@@ -42,51 +55,50 @@ public class Client {
         } else{
             password = input.next();
         }
-        session = client.getClient().login(user,password);
-        if (session != null){
+        client.setSession(client.getClient().login(user,password));
+        if (client.getSession() != null){
             System.out.println("Logged in!");
+            try {
+                client.setMap(client.getSession().loadMap());
+            } catch (RemoteException e) {
+                e.printStackTrace();
+            }
         } else{
             System.out.println("Login failed");
+            System.exit(0);
         }
 
         while (isRunning){
             switch (input.next()){
                 case "say":
-                    if (session == null){
-                        System.out.println("Please log in");
-                        break;
-                    }
-
                     try {
-                        client.getClient().sendMessage(session.getCharacter().getName() + ": " + input.nextLine());
+                        client.getClient().sendMessage(client.getSession().getCharacter().getName() + ": " + input.nextLine());
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
                     break;
                 case "logout":
                     try {
-                        session.logout();
+                        client.getSession().logout();
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
-                    session = null;
+                    client.setSession(null);
                     isRunning = false;
                     input.close();
                     System.out.println("logged out");
                     break;
                 case "info":
-                    if (session == null){
-                        System.out.println("Please login.");
-                        break;
-                    }
-
                     try {
                         System.out.println("--- Session Info ---");
-                        System.out.println("Username:" + session.getCharacter().getName());
+                        System.out.println("Username: " + client.getSession().getCharacter().getName());
+                        System.out.println("Location: " + client.getSession().getCharacter().getLocation().getName());
                         System.out.println("---      End     ---");
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
+                    break;
+                case "go":
                     break;
                 case "exit":
                     isRunning = false;

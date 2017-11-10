@@ -10,4 +10,7 @@ import java.rmi.RemoteException;
 public interface Login extends Remote {
     Session login(String username, String password)
             throws LoginException, RemoteException;
+
+    boolean createAccount(String username, String password)
+        throws RemoteException;
 }
