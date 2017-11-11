@@ -53,7 +53,9 @@ public class LocationSQLiteContext implements LocationRepository {
 
     private Location CreateLocationFromResultSet(ResultSet rs) throws SQLException {
         return new Location(
-                rs.getString("Name")
+                rs.getString("Name"),
+                rs.getInt("X"),
+                rs.getInt("Y")
         );
     }
 }

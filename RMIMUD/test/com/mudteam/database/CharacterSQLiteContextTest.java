@@ -18,7 +18,7 @@ public class CharacterSQLiteContextTest {
     public void setUp() throws Exception {
         characterRepo = new CharacterSQLiteContext();
         name = "noname";
-        location = new Location("test");
+        location = new Location("test", 0, 0);
     }
 
     @Test
