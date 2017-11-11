@@ -1,7 +1,7 @@
-package com.company.network;
+package com.mudteam.network;
 
-import com.company.database.AccountRepository;
-import com.company.database.AccountSQLiteContext;
+import com.mudteam.database.AccountRepository;
+import com.mudteam.database.AccountSQLiteContext;
 
 import javax.security.auth.login.LoginException;
 import java.rmi.RemoteException;

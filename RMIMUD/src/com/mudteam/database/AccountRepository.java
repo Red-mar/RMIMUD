@@ -1,6 +1,6 @@
-package com.company.database;
+package com.mudteam.database;
 
-import com.company.mud.Account;
+import com.mudteam.mud.Account;
 
 public interface AccountRepository {
     boolean createAccount(String username, String password);

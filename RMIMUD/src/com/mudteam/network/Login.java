@@ -1,4 +1,4 @@
-package com.company.network;
+package com.mudteam.network;
 
 import javax.security.auth.login.LoginException;
 import java.rmi.Remote;

@@ -1,7 +1,7 @@
-package com.company.network;
+package com.mudteam.network;
 
-import com.company.mud.Character;
-import com.company.mud.Location;
+import com.mudteam.mud.Character;
+import com.mudteam.mud.Location;
 
 import java.rmi.NoSuchObjectException;
 import java.rmi.RemoteException;

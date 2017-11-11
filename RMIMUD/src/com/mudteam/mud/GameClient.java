@@ -1,7 +1,7 @@
-package com.company.mud;
+package com.mudteam.mud;
 
-import com.company.network.RMIClient;
-import com.company.network.Session;
+import com.mudteam.network.RMIClient;
+import com.mudteam.network.Session;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;

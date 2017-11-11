@@ -1,4 +1,4 @@
-package com.company.mud;
+package com.mudteam.mud;
 
 import fontyspublisher.IRemotePropertyListener;
 import fontyspublisher.IRemotePublisherForListener;

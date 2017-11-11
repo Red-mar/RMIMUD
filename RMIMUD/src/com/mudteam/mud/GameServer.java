@@ -1,8 +1,8 @@
-package com.company.mud;
+package com.mudteam.mud;
 
-import com.company.database.CharacterRepository;
-import com.company.database.CharacterSQLiteContext;
-import com.company.network.RMIServer;
+import com.mudteam.database.CharacterRepository;
+import com.mudteam.database.CharacterSQLiteContext;
+import com.mudteam.network.RMIServer;
 import fontyspublisher.RemotePublisher;
 
 import java.rmi.RemoteException;

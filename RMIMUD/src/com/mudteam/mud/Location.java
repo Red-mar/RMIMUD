@@ -1,6 +1,4 @@
-package com.company.mud;
-
-import com.sun.javafx.geom.Vec2d;
+package com.mudteam.mud;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,6 +1,6 @@
-package com.company;
+package com.mudteam;
 
-import com.company.mud.GameServer;
+import com.mudteam.mud.GameServer;
 import java.rmi.RemoteException;
 import java.util.Timer;
 

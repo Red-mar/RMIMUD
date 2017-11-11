@@ -1,9 +1,6 @@
-package com.company;
+package com.mudteam;
 
-import com.company.mud.GameClient;
-import com.company.mud.ViewOnChat;
-import com.company.network.RMIClient;
-import com.company.network.Session;
+import com.mudteam.mud.GameClient;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;

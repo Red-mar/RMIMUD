@@ -1,8 +1,6 @@
-package com.company.network;
+package com.mudteam.network;
 
-import com.company.database.AccountRepository;
-import com.company.mud.Account;
-import com.company.mud.IChat;
+import com.mudteam.mud.IChat;
 
 import javax.security.auth.login.LoginException;
 import java.net.MalformedURLException;
