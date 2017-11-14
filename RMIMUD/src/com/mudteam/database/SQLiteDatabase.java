@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class SQLiteDatabase {
 
-    private static String connectionString = "jdbc:sqlite:C:\\Users\\redmar\\Desktop\\git\\RMIMUD\\RMIMUD\\src\\com\\mudteam\\database\\database";
+    private static String connectionString = "jdbc:sqlite:C:\\Users\\a\\Desktop\\git\\RMIMUD\\RMIMUD\\RMIMUD\\src\\com\\mudteam\\database\\database";
 
     public static Connection connection(){
         try {
