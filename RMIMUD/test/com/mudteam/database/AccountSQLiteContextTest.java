@@ -18,9 +18,9 @@ public class AccountSQLiteContextTest {
 
     @Test
     public void login() throws Exception {
-        boolean isSuccesful = accountRepo.login("foiwejow", "gorejge");
+        int isSuccesful = accountRepo.login("foiwejow", "gorejge");
 
-        assertEquals(false, isSuccesful);
+        assertEquals(0, isSuccesful);
     }
 
     @Test

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public interface Session extends Remote {
     void logout() throws RemoteException;
-    Character getCharacter() throws RemoteException;
+    ArrayList<Character> getCharacters() throws RemoteException;
+    boolean CreateCharacter(String name) throws RemoteException;
     ArrayList<Location> loadMap() throws RemoteException;
 }

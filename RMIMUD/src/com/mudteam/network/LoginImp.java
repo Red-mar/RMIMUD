@@ -16,8 +16,9 @@ public class LoginImp extends UnicastRemoteObject implements Login {
 
     @Override
     public Session login(String username, String password) throws LoginException, RemoteException {
-        if (accountRepo.login(username, password)){
-            return new SessionImp(username);
+        int accountID = accountRepo.login(username, password);
+        if (accountID != 0){
+            return new SessionImp(accountID);
         }
         return null;
     }

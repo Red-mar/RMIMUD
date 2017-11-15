@@ -13,7 +13,6 @@ import java.util.TimerTask;
 public class GameServer extends TimerTask {
     private RemotePublisher publisher;
     private RMIServer server;
-    private CharacterRepository characterRepository;
     private int ticks = 0;
 
     public GameServer() throws RemoteException {
@@ -22,8 +21,6 @@ public class GameServer extends TimerTask {
         publisher.registerProperty("chat");
         Registry registry = LocateRegistry.createRegistry(4322);
         registry.rebind("chatPublisher", publisher);
-
-        characterRepository = new CharacterSQLiteContext();
     }
 
     @Override
@@ -38,5 +35,9 @@ public class GameServer extends TimerTask {
         } catch (RemoteException e) {
             e.printStackTrace();
         }
+    }
+
+    private void processMessage(String message){
+
     }
 }

@@ -13,6 +13,7 @@ public class GameClient {
     private RMIClient client;
     private Session session;
     private ArrayList<Location> map;
+    private Character currentCharacter = null;
 
     public GameClient(String ip, int port) throws RemoteException, NotBoundException {
         client = new RMIClient(ip, port);
@@ -83,11 +84,43 @@ public class GameClient {
             System.exit(0);
         }
 
+        System.out.println("What do you want to do?");
+        System.out.println("[1] Create a new character.");
+        System.out.println("[2] Play the game.");
+        System.out.println("[3] Logout.");
+
+        switch (input.next()){
+            case "1":
+                System.out.println("What is the name of your character?");
+                String name = input.next();
+                try {
+                    session.CreateCharacter(name);
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                break;
+            case "2":
+                System.out.println("Select a character.");
+                ArrayList<Character> characters = null;
+                try {
+                    characters = session.getCharacters();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+                for (int i = 0; i < characters.size(); i++) {
+                    System.out.println("[" + i + "] " + characters.get(i).getName());
+                }
+                currentCharacter = characters.get(input.nextInt());
+                break;
+            case "3":
+                break;
+        }
+
         while (isRunning){
             switch (input.next()){
                 case "say":
                     try {
-                        client.sendMessage(getSession().getCharacter().getName() + ": " + input.nextLine());
+                        client.sendMessage(currentCharacter.getName() + ": " + input.nextLine());
                     } catch (RemoteException e) {
                         e.printStackTrace();
                     }
@@ -114,15 +147,11 @@ public class GameClient {
     }
 
     private void getInfo(){
-        try {
-            System.out.println("--- Session Info ---");
-            System.out.println("Username: " + getSession().getCharacter().getName());
-            System.out.println("Locations: " + map.toString());
-            //System.out.println("Location: " + getSession().getCharacter().getLocation().getName());
-            System.out.println("---      End     ---");
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+        System.out.println("--- Session Info ---");
+        System.out.println("Username: " + currentCharacter.getName());
+        System.out.println("Locations: " + map.toString());
+        //System.out.println("Location: " + getSession().getCharacter().getLocation().getName());
+        System.out.println("---      End     ---");
     }
 
     private void logout(){

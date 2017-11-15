@@ -14,19 +14,14 @@ import java.rmi.server.Unreferenced;
 import java.util.ArrayList;
 
 public class SessionImp extends UnicastRemoteObject implements Session, Unreferenced {
-    Character character;
     LocationRepository locationRepo;
     CharacterRepository characterRepo;
+    int accountID;
 
-    public SessionImp(String name) throws RemoteException {
-        character = new Character(name);
+    public SessionImp(int accountID) throws RemoteException {
         locationRepo = new LocationSQLiteContext();
         characterRepo = new CharacterSQLiteContext();
-    }
-
-    public Character getCharacter() {
-
-        return character;
+        this.accountID = accountID;
     }
 
     @Override
@@ -37,6 +32,16 @@ public class SessionImp extends UnicastRemoteObject implements Session, Unrefere
     @Override
     public void logout() throws RemoteException {
         unexportObject(this,true);
+    }
+
+    @Override
+    public ArrayList<Character> getCharacters() throws RemoteException {
+        return characterRepo.getCharacterByAccount(accountID);
+    }
+
+    @Override
+    public boolean CreateCharacter(String name) throws RemoteException {
+        return characterRepo.createCharacter(accountID, name);
     }
 
     @Override

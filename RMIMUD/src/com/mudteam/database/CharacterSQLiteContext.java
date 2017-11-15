@@ -32,6 +32,28 @@ public class CharacterSQLiteContext implements CharacterRepository {
     }
 
     @Override
+    public ArrayList<Character> getCharacterByAccount(int id) {
+        ArrayList<Character> characters = new ArrayList<>();
+        String command = "SELECT * FROM Character" +
+                " JOIN accountcharacter ON character.ID = accountcharacter.CharacterID" +
+                " JOIN account ON accountcharacter.AccountID = account.ID" +
+                " WHERE account.ID = ?";
+
+        try (Connection conn = SQLiteDatabase.connection()) {
+            PreparedStatement statement = conn.prepareStatement(command);
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()){
+                characters.add(CreateCharacterFromResultSet(rs));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return characters;
+    }
+
+    @Override
     public ArrayList<Character> getCharactersByLocation(Location location) {
         ArrayList<Character> characters = new ArrayList<>();
         String command = "SELECT * FROM Character" +
@@ -54,13 +76,31 @@ public class CharacterSQLiteContext implements CharacterRepository {
     }
 
     @Override
-    public boolean createCharacter(String name) {
+    public boolean createCharacter(int accountID, String name) {
         String command = "INSERT INTO character (Name, Lifepoints) VALUES (?, 10)";
+        int characterID;
 
         try (Connection conn = SQLiteDatabase.connection()) {
             PreparedStatement statement = conn.prepareStatement(command);
             statement.setString(1, name);
             statement.execute();
+
+            command = "SELECT ID FROM character ORDER BY ID DESC LIMIT 1";
+            statement = conn.prepareStatement(command);
+            ResultSet rs = statement.executeQuery();
+            characterID = rs.getInt("ID");
+
+            command = "INSERT INTO accountcharacter (AccountID, CharacterID) VALUES (?, ?)";
+            statement = conn.prepareStatement(command);
+            statement.setInt(1, accountID);
+            statement.setInt(2, characterID);
+            statement.execute();
+
+            command = "INSERT INTO characterlocation (LocationID, CharacterID) VALUES (1, ?)";
+            statement = conn.prepareStatement(command);
+            statement.setInt(1, characterID);
+            statement.execute();
+
             return true;
         } catch (SQLException e) {
             e.printStackTrace();

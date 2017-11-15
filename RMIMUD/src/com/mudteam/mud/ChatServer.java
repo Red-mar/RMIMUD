@@ -8,9 +8,7 @@ import java.util.ArrayList;
 
 public class ChatServer extends UnicastRemoteObject implements IChat {
 
-    private transient RemotePublisher publisher;
     private ArrayList<String> messages;
-    private boolean isServer;
 
     public ChatServer(boolean isServer) throws RemoteException {
         messages = new ArrayList<>();

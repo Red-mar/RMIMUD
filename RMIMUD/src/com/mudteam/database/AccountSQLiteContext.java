@@ -26,8 +26,8 @@ public class AccountSQLiteContext implements AccountRepository {
     }
 
     @Override
-    public boolean login(String username, String password) {
-        String command = "SELECT Username FROM account " +
+    public int login(String username, String password) {
+        String command = "SELECT ID, Username FROM account " +
                 "WHERE username = ? " +
                 "AND password = ?";
 
@@ -40,13 +40,13 @@ public class AccountSQLiteContext implements AccountRepository {
             while (rs.next()){
                 System.out.println(rs.getString("Username"));
                 if (rs.getString("Username").equals(username)){
-                    return true;
+                    return rs.getInt("ID");
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return 0;
     }
 
     @Override
